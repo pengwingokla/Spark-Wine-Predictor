@@ -7,7 +7,7 @@ from pyspark.ml.feature import VectorAssembler, StringIndexer
 from pyspark.ml import Pipeline
 from pyspark.sql.functions import col, count
 from pyspark.sql.types import NumericType
-from config import DATA_CONFIG
+from .config import DATA_CONFIG
 
 
 class DataProcessor:

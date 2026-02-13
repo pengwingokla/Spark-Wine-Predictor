@@ -3,10 +3,7 @@ Main application entry point for Spark Wine Predictor.
 This module orchestrates the entire pipeline.
 """
 import logging
-from spark_session import initialize_spark
-from data_processor import DataProcessor
-from model_trainer import ModelTrainer
-from config import TRAINCSV, VALCSV, MODEL_PATH
+from src import initialize_spark, DataProcessor, ModelTrainer, TRAINCSV, VALCSV, MODEL_PATH
 
 # Configure logging
 logging.basicConfig(level=logging.INFO)
@@ -57,3 +54,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

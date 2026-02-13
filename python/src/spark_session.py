@@ -3,7 +3,7 @@ Spark session initialization module.
 This module handles Spark session creation and configuration.
 """
 from pyspark.sql import SparkSession
-from config import SPARK_CONFIG
+from .config import SPARK_CONFIG
 
 
 def initialize_spark():

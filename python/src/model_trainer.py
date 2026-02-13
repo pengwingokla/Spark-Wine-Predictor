@@ -5,7 +5,7 @@ This module handles model training, hyperparameter tuning, and evaluation.
 from pyspark.ml.classification import RandomForestClassifier
 from pyspark.ml.evaluation import MulticlassClassificationEvaluator
 from pyspark.ml.tuning import ParamGridBuilder, TrainValidationSplit
-from config import MODEL_CONFIG
+from .config import MODEL_CONFIG
 
 
 class ModelTrainer:
