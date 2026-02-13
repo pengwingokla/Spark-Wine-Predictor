@@ -1,24 +1,14 @@
-from pyspark.ml.classification import LogisticRegressionModel, RandomForestClassificationModel
-from pyspark.sql import SparkSession
-from pyspark.ml.evaluation import MulticlassClassificationEvaluator
-from pyspark.ml.tuning import ParamGridBuilder, TrainValidationSplit
-from app import preprocess_data
 import os
 import json
 import logging
 
+from pyspark.ml.classification import LogisticRegressionModel, RandomForestClassificationModel
+from pyspark.ml.evaluation import MulticlassClassificationEvaluator
+
+from src import initialize_spark, DataProcessor
 
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger("WineQualityPrediction")
-
-def initialize_spark():
-    return SparkSession.builder \
-        .appName("WineQualityPrediction") \
-        .master("spark://172.31.87.32:7077") \
-        .config("spark.executor.memory", "3g") \
-        .config("spark.executor.cores", "2") \
-        .config("spark.task.cpus", "1") \
-        .getOrCreate()
 
 def load_model(model_path):
     model_type = get_model_type(model_path)
@@ -52,11 +42,14 @@ def main():
     spark = initialize_spark()
     
     try:
+        # Initialize data processor
+        data_processor = DataProcessor(spark)
+        
         # Load test dataset
         logger.info("Loading test dataset...")
         TESTCSV = "TestDataset.csv"
         testdf = spark.read.csv(TESTCSV, header=True, inferSchema=True, sep=';')
-        testdf = preprocess_data(testdf)
+        testdf = data_processor.preprocess_data(testdf)
 
         # Load saved model
         logger.info("Loading the trained model...")
@@ -83,3 +76,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

@@ -13,6 +13,11 @@ The project will employ Spark's MLlib to implement a simple linear regression or
 
 This hands-on project showcases the power of Apache Spark for distributed machine learning, the versatility of MLlib for regression and classification, and the scalability of AWS cloud infrastructure for high-performance computing tasks.
 
+#### Spark Execution Model
+![Spark Execution Model](diagram/spark-execution-model.png)
+
+**Description:** Sequence diagram illustrating the execution model of Spark applications, showing the interaction between the driver, master, executors, and storage layer.
+
 ## Project Action Items
 0. Launch 4 EC2 instances on AWS to parallelize model training.
 0. SSH into the EC2 Instance
@@ -82,6 +87,11 @@ This project sets up Apache Spark standalone cluster with:
 * 1 Master Node: Coordinates and schedules the execution of tasks.
 * 3 Worker Nodes: Execute tasks in parallel, processing data distributed across them.
 Each worker node has a specified number of cores and memory assigned.
+
+#### Spark Cluster Resources
+![Spark Cluster Resources](diagram/spark-cluster-resources.png)
+
+Visual representation of Spark cluster resource allocation, showing how CPU cores, memory, and executors are distributed across worker nodes in the cluster.
 
 #### Commands
 <br>Start Spark master and worker instances
